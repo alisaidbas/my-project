@@ -46,7 +46,7 @@ Resources:
             #! /bin/bash
             yum update -y
             yum install httpd -y
-            FOLDER="https://raw.githubusercontent.com/okti3535/my-projects/main/Project-101-kittens-carousel-static-website-ec2/static-web/"
+            FOLDER="https://raw.githubusercontent.com/alisaidbas/my-project/main/Project-101-kittens-carousel-static-website-ec2%26CF/static-web/"
             cd /var/www/html
             wget $FOLDER/index.html
             wget $FOLDER/cat0.jpg
@@ -56,7 +56,9 @@ Resources:
             systemctl start httpd
             systemctl enable httpd
 
-
-
-
 Outputs:
+  WebSiteUrl:
+    Value: !Sub 
+    - http://${PublicAddress}
+    - PublicAddress: !GetAtt WebServerHost.PublicDnsName
+    
